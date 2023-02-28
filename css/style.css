@@ -1,0 +1,170 @@
+/* rohit bollampally */
+/* create the animation for the logo starts at 25px, opacity 0, and ends at 475px, opactiy 1 */
+@keyframes anim{
+    0% {width: 25px;}
+    100% {width: 475px;}
+    0%{opacity: 0;}
+    100%{opacity: 1;}
+}
+
+/* grab the logo that we want to animate using its ID and set to only happen once so it happens on refresh */
+#logo{
+    animation-iteration-count: 1;
+    animation: anim 5s;
+}
+body{
+    font-family: 'Poppins', serif;
+    background-color: #f1f1f1;
+    background-image: url('../images/concrete_seamless.png');
+}
+/* need to set header as a flex container to set logo in middle */
+header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+/* nav links are their own flex containter to have them in column */
+.nav_links{
+    display: flex;
+    flex-direction: column;
+}
+/* make sure nav links don't change color by always setting them to blue */
+.nav_links a, .nav_links a:visited {
+    color: blue;
+}
+/* set the pricing to make sure all the cards are in the center and rolled over each row */
+/* make sure to set flex-direction row so that the flex-basis adjusts width  */
+.pricing{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+}
+
+/* make sure to set flex-basis and set the border radius so that white div doesn't show up */
+.card{
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    flex-basis: 450px;
+
+    
+}
+
+/* set the card class as per the spec  */
+.card > header{
+    background: #288088;
+    border: 2px solid #45ADAD;
+    padding: 20px 0px 20px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    
+}
+/* set the gallery to row and wrap so that it works for all screen sizes */
+.gallery{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+}
+
+.gallery img{
+    border: 10px solid  #50C7C7; 
+    margin: 10px; 
+    width: 300px;
+}
+/* larger screens  */
+@media only screen and (min-width: 900px){
+
+    /* set to row */
+    header{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    /* set flex-direction row so that they show up next to each other */
+    .nav_links{
+        display: flex;
+        flex-direction: row;
+        align-self: flex-end;
+        justify-self: flex-end;
+    }
+    /* set flex-direction row so that it shows up next to each other */
+    .pricing{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+    }
+    /* set flex-basis to 275 */
+    .card{
+        border-top-left-radius: 50px;
+        border-top-right-radius: 50px;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+        flex-basis: 275px;
+        
+    }
+    /* only first header of the body should be sticky  */
+body > header:first-of-type{
+    position: sticky;
+    top: 0;
+}
+}
+
+/* remove animation for reduced motion */
+@media (prefers-reduced-motion){
+ #logo{
+     animation: none; 
+ }
+}   
+
+@media print{
+
+    body{
+        font-family: 'Arial', Helvetica;
+        background-image: none;
+    }
+    /* need to set to 100% to get to spread across page */
+    nav{
+        width: 100%;
+    }
+    nav, .nav_links{
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+    /*set to no wrap because we want on same line */
+    .pricing{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: flex-end;
+    }
+    .card{
+        border: 2px solid #45ADDD; 
+        flex-basis: 325px;
+
+    }
+    /* remove gallery header from page as per video guidelines  */
+    #gallery{
+        display: none;
+    }
+    /* remove gallery content from page */
+    .gallery{
+        display: none;
+    }
+    /* add the emoji to the second list element */
+    .card li:nth-child(2)::after{
+        content: '\1F44D';
+
+    }
+}
